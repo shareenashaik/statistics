@@ -1,0 +1,39 @@
+<div class="container">
+	<table id="statistics" class="table table-striped table-bordered" style="width: 1000px;">
+		<thead>
+			<th>Name</th>
+			<th>Given Name</th>
+			<th>AVG</th>
+			<th>Home Runs</th>
+			<th>RBI</th>
+			<th>SB</th>
+			<th>OPS</th>
+		</thead>
+		<tbody>
+			<% @player_details.each do |pd| %>
+				<tr>
+					<td><%= pd.player.name %></td>
+					<td><%= pd.given_name %> </td>
+					<td><%= pd.hits.to_i/pd.at_bats.to_i rescue 0 %> </td>
+					<td><%= pd.home_runs %> </td>
+					<td><%= pd.rbi %></td>
+					<td></td>
+					<td></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+
+<script type="text/javascript">
+  jQuery(document).ready(function() {
+    jQuery('#statistics').dataTable( {
+	    "pageLength": 25,
+		"bFilter": true,
+		"bInfo": false,
+		"bAutoWidth": false,
+		"searching": true,
+		"scrollX": true
+	});
+  });
+</script>
